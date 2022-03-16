@@ -25,7 +25,7 @@ public class Person {
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name ="person_id",referencedColumnName = "id")
+    @JoinColumn(name ="person_id")
     private Set<Demand> demands =new HashSet<>();
 
     @OneToOne(mappedBy = "person")

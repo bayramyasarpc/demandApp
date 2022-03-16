@@ -40,11 +40,12 @@ public class PersonService {
         if(authority.equals("USER")) {
             Authority authority1 = new Authority(1L, authority, Set.of());
             Users users = new Users(null,person.getFirstName(),
-                                                passwordEncoder.encode(person.getLastName()), Set.of(authority1),person);
-            userRepository.save(users);
+                    passwordEncoder.encode(person.getLastName()), Set.of(authority1),person);
+                    userRepository.save(users);
         }else if(authority.equals("ADMIN")){
             Authority authority1 = new Authority(2L, authority, Set.of());
-            Users users = new Users(null, person.getFirstName(), person.getLastName(), Set.of(authority1),person);
+            Users users = new Users(null, person.getFirstName(),
+                                                passwordEncoder.encode(person.getLastName()), Set.of(authority1),person);
             userRepository.save(users);
         }
 
@@ -52,14 +53,4 @@ public class PersonService {
         return new MessageResponse("person saved successfully!", MessageType.SUCCESS);
     }
 
-//    @Transactional
-//    public String giveAuthority(Long id,AuthorityRequest authorityRequest) {
-//            Person person=personRepository.findByFirstnameAndLastname(authorityRequest.getFirstName(), authorityRequest.getLastName());
-//            if(person!=null){
-//                databasePopulator.giveAuthority(person,authorityRequest);
-//                return "authority verildi";
-//            }else{
-//                return "person not found";
-//            }
-//    }
 }

@@ -8,11 +8,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.springframework.security.core.parameters.P;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import yte.parttime.demandApp.configuration.DatabasePopulator;
 import yte.parttime.demandApp.controller.request.AuthorityRequest;
 import yte.parttime.demandApp.entity.Person;
+import yte.parttime.demandApp.entity.Users;
 import yte.parttime.demandApp.message.MessageResponse;
 import yte.parttime.demandApp.repository.PersonRepository;
+import yte.parttime.demandApp.repository.UserRepository;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,36 +30,24 @@ class PersonServiceTest {
     PersonRepository personRepository;
 
     @Mock
-    DatabasePopulator databasePopulator;
+    PasswordEncoder passwordEncoder;
+
+    @Mock
+    UserRepository userRepository;
 
     @InjectMocks
     PersonService personService;
 
-//    @Test
-//    void addPerson() {
-//        Person person = new Person();
-//        when(personRepository.save(person)).thenReturn(person);
-//
-//        MessageResponse messageResponse = personService.addPerson(person);
-//        assertThat(messageResponse.getMessage()).isEqualTo("person saved successfully!");
-//
-//    }
+    @Test
+    void addPerson() {
+        Person person = new Person();
+        Users users=new Users();
+        when(personRepository.save(person)).thenReturn(person);
+        when(userRepository.save(users)).thenReturn(users);
 
-//    @Test
-//    void testGiveAuthorityPersonFound() {
-//        Person person = new Person();
-//        AuthorityRequest authorityRequest = new AuthorityRequest();
-//        when(personRepository.findByFirstnameAndLastname(authorityRequest.getFirstName(), authorityRequest.getLastName())).thenReturn(person);
-//
-//        String view = personService.giveAuthority(authorityRequest);
-//        assertEquals("authority verildi", view);
-//    }
-//
-//    @Test
-//    void testGiveAuthorityPersonNotFound() {
-//        AuthorityRequest authorityRequest = new AuthorityRequest();
-//        when(personRepository.findByFirstnameAndLastname(authorityRequest.getFirstName(), authorityRequest.getLastName())).thenReturn(null);
-//        String giveAuthority = personService.giveAuthority(authorityRequest);
-//        assertThat(giveAuthority).isEqualTo("person not found");
-//    }
+        MessageResponse messageResponse = personService.addPerson(person,"USER");
+        assertThat(messageResponse.getMessage()).isEqualTo("person saved successfully!");
+
+    }
+
 }
