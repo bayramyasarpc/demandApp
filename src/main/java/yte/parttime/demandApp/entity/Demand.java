@@ -1,9 +1,8 @@
 package yte.parttime.demandApp.entity;
 
-import lombok.Builder;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.sql.Update;
 import yte.parttime.demandApp.controller.request.UpdateDemandRequest;
 
 import javax.persistence.*;
@@ -11,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-//@MappedSuperclass
+
 
 @Entity
 @Getter

@@ -7,10 +7,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import yte.parttime.demandApp.configuration.DatabasePopulator;
-import yte.parttime.demandApp.controller.request.AuthorityRequest;
 import yte.parttime.demandApp.entity.Person;
 import yte.parttime.demandApp.entity.Users;
 import yte.parttime.demandApp.message.MessageResponse;
@@ -19,7 +16,6 @@ import yte.parttime.demandApp.repository.UserRepository;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

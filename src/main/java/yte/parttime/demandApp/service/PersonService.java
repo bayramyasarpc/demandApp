@@ -2,8 +2,6 @@ package yte.parttime.demandApp.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import yte.parttime.demandApp.configuration.DatabasePopulator;
-import yte.parttime.demandApp.controller.request.AuthorityRequest;
 import yte.parttime.demandApp.entity.Authority;
 import yte.parttime.demandApp.entity.Person;
 import yte.parttime.demandApp.entity.Users;

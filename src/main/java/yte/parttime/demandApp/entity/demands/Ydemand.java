@@ -7,7 +7,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-//@Table(name = "demand")
+
 @Entity
 @DiscriminatorValue("Ydemand")
 public class Ydemand extends  Demand{

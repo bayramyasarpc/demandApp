@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import yte.parttime.demandApp.configuration.DatabasePopulator;
 import yte.parttime.demandApp.controller.request.AddPersonRequest;
-import yte.parttime.demandApp.controller.request.AuthorityRequest;
 import yte.parttime.demandApp.entity.Person;
 import yte.parttime.demandApp.message.MessageResponse;
 import yte.parttime.demandApp.service.DemandHistoryService;
@@ -48,17 +47,10 @@ public class PersonController{
     }
 
     @PostMapping("/kisi-kayit/{authority}")
-    @PreAuthorize("hasAnyAuthority('USER','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public MessageResponse addPerson(@Valid @PathVariable String authority, @RequestBody AddPersonRequest addPersonRequest){
         Person person = addPersonRequest.toEntity();
         return personService.addPerson(person,authority);
     }
-
-//    @PostMapping("/{id}/authority-verme")
-//    @PreAuthorize("hasAuthority('ADMIN')")
-//    public String giveAuthority(@PathVariable Long id,@RequestBody AuthorityRequest authorityRequest){
-//        return personService.giveAuthority(id,authorityRequest);
-//    }
-
 }
 

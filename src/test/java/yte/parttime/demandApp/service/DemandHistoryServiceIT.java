@@ -18,6 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 class DemandHistoryServiceIT {
 
+    private Long demandID;
+
     @Autowired
     DemandRepository demandRepository;
 
@@ -28,6 +30,7 @@ class DemandHistoryServiceIT {
     void setUp() {
         Demand demand=new Xdemand("xdemand","mentor",null,null,3.1);
         demandRepository.save(demand);
+        setDemandID(demand.getId());
 
         DemandHistoryService demandHistoryService=new DemandHistoryService(demandRepository,demandHistoryRepository);
         demandHistoryService.addLastDemand(demand.getId());
@@ -35,9 +38,9 @@ class DemandHistoryServiceIT {
 
     @Test
     void addLastDemand() {
+
         DemandHistoryService demandHistoryService=new DemandHistoryService(demandRepository,demandHistoryRepository);
-        System.out.println("hata burdan geldi");
-        MessageResponse messageResponse = demandHistoryService.addLastDemand(1L);
+        MessageResponse messageResponse = demandHistoryService.addLastDemand(getDemandID());
         assertThat(messageResponse.getMessage()).isEqualTo("LastDemand added successfully!");
     }
 
@@ -45,7 +48,15 @@ class DemandHistoryServiceIT {
     void listDemandHistory() {
         DemandHistoryService demandHistoryService=new DemandHistoryService(demandRepository,demandHistoryRepository);
 
-        List<DemandHistory> demandHistories = demandHistoryService.listDemandHistory(2L);
+        List<DemandHistory> demandHistories = demandHistoryService.listDemandHistory(getDemandID());
         assertThat(demandHistories).isNotEmpty();
+    }
+
+    public Long getDemandID() {
+        return demandID;
+    }
+
+    public void setDemandID(Long demandID) {
+        this.demandID = demandID;
     }
 }
